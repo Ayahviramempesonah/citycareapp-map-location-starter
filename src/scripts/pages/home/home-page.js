@@ -12,9 +12,7 @@ export default class HomePage {
   #presenter = null;
   #map = null;
 
-
   async render() {
-    
     return `
       <section>
         <div class="reports-list__map__container">
@@ -51,8 +49,6 @@ export default class HomePage {
     }
 
     const html = reports.reduce((accumulator, report) => {
-
-
       if (this.#map) {
         const coordinate = [report.location.latitude, report.location.longitude];
         const markerOptions = { alt: report.title };
@@ -82,14 +78,10 @@ export default class HomePage {
   }
 
   async initialMap() {
-
-this.#map = await Map.build('#map',{
-  zoom:10,
-  locate:true
-})
-
-
-
+    this.#map = await Map.build('#map', {
+      zoom: 10,
+      locate: true,
+    });
   }
 
   showMapLoading() {
@@ -108,6 +100,4 @@ this.#map = await Map.build('#map',{
   hideLoading() {
     document.getElementById('reports-list-loading-container').innerHTML = '';
   }
-
-  
 }

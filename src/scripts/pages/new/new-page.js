@@ -12,7 +12,7 @@ export default class NewPage {
   #isCameraOpen = false;
   #takenDocumentations = [];
   // #updateLatLngInput
-  #map=null
+  #map = null;
 
   async render() {
     return `
@@ -216,41 +216,37 @@ export default class NewPage {
   }
 
   async initialMap() {
-      this.#map = await Map.build('#map', {
-        zoom: 15,
-        locate: true,
-      });
-  
-      // Preparing marker for select coordinate
-      const centerCoordinate = this.#map.getCenter();
-  
-       this.#updateLatLngInput(centerCoordinate.latitude, centerCoordinate.longitude);
-  
-      const draggableMarker = this.#map.addMarker(
-        [centerCoordinate.latitude, centerCoordinate.longitude],
-        { draggable: 'true' },
-      );
-  
-      draggableMarker.addEventListener('move', (event) => {
-        const coordinate = event.target.getLatLng();
-         this.#updateLatLngInput(coordinate.lat, coordinate.lng);
-      });
-  
-      this.#map.addMapEventListener('click', (event) => {
-        draggableMarker.setLatLng(event.latlng);
-  
-        // Keep center
-        event.sourceTarget.flyTo(event.latlng);
-      });
+    this.#map = await Map.build('#map', {
+      zoom: 15,
+      locate: true,
+    });
 
-    
-    }
-    #updateLatLngInput(latitude, longitude,) {
-      this.#form.elements.namedItem('latitude').value = latitude;
-      this.#form.elements.namedItem('longitude').value = longitude;
-    }
+    // Preparing marker for select coordinate
+    const centerCoordinate = this.#map.getCenter();
 
+    this.#updateLatLngInput(centerCoordinate.latitude, centerCoordinate.longitude);
 
+    const draggableMarker = this.#map.addMarker(
+      [centerCoordinate.latitude, centerCoordinate.longitude],
+      { draggable: 'true' },
+    );
+
+    draggableMarker.addEventListener('move', (event) => {
+      const coordinate = event.target.getLatLng();
+      this.#updateLatLngInput(coordinate.lat, coordinate.lng);
+    });
+
+    this.#map.addMapEventListener('click', (event) => {
+      draggableMarker.setLatLng(event.latlng);
+
+      // Keep center
+      event.sourceTarget.flyTo(event.latlng);
+    });
+  }
+  #updateLatLngInput(latitude, longitude) {
+    this.#form.elements.namedItem('latitude').value = latitude;
+    this.#form.elements.namedItem('longitude').value = longitude;
+  }
 
   #setupCamera() {
     if (!this.#camera) {

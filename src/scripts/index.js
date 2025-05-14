@@ -4,7 +4,6 @@ import '../styles/responsives.css';
 import 'tiny-slider/dist/tiny-slider.css';
 import 'leaflet/dist/leaflet.css';
 
-
 // Components
 import App from './pages/app';
 import Camera from './utils/camera';

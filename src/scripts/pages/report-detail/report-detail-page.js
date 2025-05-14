@@ -17,7 +17,7 @@ import Map from '../../utils/map';
 export default class ReportDetailPage {
   #presenter = null;
   #form = null;
-  #map=null
+  #map = null;
 
   async render() {
     return `
@@ -66,7 +66,7 @@ export default class ReportDetailPage {
     document.getElementById('report-detail').innerHTML = generateReportDetailTemplate({
       title: report.title,
       description: report.description,
-      location:report.location,
+      location: report.location,
       damageLevel: report.damageLevel,
       evidenceImages: report.evidenceImages,
       latitudeLocation: report.location.latitude,
@@ -81,7 +81,6 @@ export default class ReportDetailPage {
     // Map
     await this.#presenter.showReportDetailMap();
 
-
     if (this.#map) {
       const reportCoordinate = [report.location.latitude, report.location.longitude];
       const markerOptions = { alt: report.title };
@@ -89,9 +88,6 @@ export default class ReportDetailPage {
       this.#map.changeCamera(reportCoordinate);
       this.#map.addMarker(reportCoordinate, markerOptions, popupOptions);
     }
-
-
-
 
     // Actions buttons
     this.#presenter.showSaveButton();
@@ -136,12 +132,9 @@ export default class ReportDetailPage {
   }
 
   async initialMap() {
-
     this.#map = await Map.build('#map', {
       zoom: 15,
     });
-
-
   }
 
   #setupForm() {

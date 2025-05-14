@@ -1,6 +1,4 @@
-import { reportMapper } from "../../data/api-mapper";
-
-
+import { reportMapper } from '../../data/api-mapper';
 
 export default class ReportDetailPresenter {
   #reportId;
@@ -37,7 +35,6 @@ export default class ReportDetailPresenter {
 
       const report = await reportMapper(response.data);
       console.log(report);
-
 
       this.#view.populateReportDetailAndInitialMap(response.message, response.data);
     } catch (error) {
