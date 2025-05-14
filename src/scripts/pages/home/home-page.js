@@ -7,6 +7,7 @@ import {
 import Map from '../../utils/map';
 import HomePresenter from './home-presenter';
 import * as CityCareAPI from '../../data/api';
+//update lockfile
 
 export default class HomePage {
   #presenter = null;
